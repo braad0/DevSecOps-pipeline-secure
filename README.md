@@ -3,13 +3,25 @@
 
 Pipeline CI/CD de sécurité automatisé — SAST, SCA, scan de secrets, lint — avec rapport consolidé à chaque push.
 
-![Banner du projet](assets/banner.png)
+
+---
+
+## Présentation
+
+J'ai construit ce pipeline pour démontrer comment intégrer la sécurité
+directement dans le cycle de développement, avant que le code parte en production.
+L'idée centrale c'est le **shift-left security** : détecter les vulnérabilités
+le plus tôt possible dans le cycle CI/CD plutôt que de les découvrir en production.
+
+Le pipeline analyse automatiquement le code source à chaque push sur `main`
+et bloque le déploiement si des vulnérabilités critiques sont détectées.
+Pour démontrer son fonctionnement, j'ai développé une application Python
+volontairement vulnérable couvrant l'OWASP Top 10.
 
 ---
 
 ## Vue d’ensemble
 
-L’idée: appliquer le shift-left security en détectant tôt les vulnérabilités pendant la CI/CD, avant toute mise en prod.  
 Ce repo contient:
 * Un pipeline GitHub Actions avec 5 jobs (SAST, SCA, Secrets, Lint, Report)
 * Une application Flask volontairement vulnérable (OWASP Top 10) pour la démo
@@ -240,20 +252,5 @@ Fichier: .github/workflows/security.yml
 
 ---
 
-## Roadmap
-
-* Ajouter un job Pytest dans la CI (matrice Python)
-* Semgrep + règles custom
-* CodeQL
-* Trivy (si Dockerfile)
-* SBOM CycloneDX
-* Badges (CI, licence, Python)
-* Plus de captures et de démos d’attaque/mitigation
-
----
-
-## Licence
-
-À définir (MIT recommandé pour démo). Ajoute un fichier LICENSE et un badge dans l’entête.
 
 
