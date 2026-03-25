@@ -91,11 +91,6 @@ Artefacts et sorties:
 * security-report.json
 * security-report.md
 
-Captures recommandées:
-* ![Onglet Security](assets/security-tab.png)
-* ![Artefacts CI](assets/artifacts.png)
-* ![Security report](assets/security-report.png)
-
 ---
 
 ## L’application vulnérable (OWASP Top 10)
@@ -246,14 +241,6 @@ mindmap
       least_privilege
       secrets_manager
 ```
-
-
-
-
-Astuce: Si GitHub a encore du mal à rendre Mermaid, exporte ces diagrammes en SVG/PNG avec mermaid-cli et inclus-les comme images:
-* ![Architecture de l’app](assets/app-arch.svg)
-* ![Remédiations](assets/remediation.svg)
-
 ---
 
 ## Détails du workflow GitHub Actions
