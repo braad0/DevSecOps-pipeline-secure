@@ -1,0 +1,6 @@
+flask==0.12.2
+requests==2.18.0
+pyyaml==3.13
+jinja2==2.10
+django==2.0.1
+cryptography==2.1.4
