@@ -130,7 +130,6 @@ def generate_markdown(report: dict) -> str:
         "",
     ]
 
-    # Détail Bandit
     lines += [
         "## Détail Bandit",
         "",
@@ -151,7 +150,7 @@ def generate_markdown(report: dict) -> str:
     lines.append("---")
     lines.append("")
 
-    # Détail pip-audit
+
     lines += [
         "## Détail pip-audit",
         "",
@@ -183,7 +182,6 @@ def generate_markdown(report: dict) -> str:
 
 
 def main():
-    # Récupérer les variables d'environnement GitHub Actions
     commit     = os.environ.get("GITHUB_SHA", "unknown")[:7]
     repository = os.environ.get("GITHUB_REPOSITORY", "unknown")
     sast_st    = os.environ.get("SAST_STATUS",    "unknown")
@@ -191,14 +189,11 @@ def main():
     secrets_st = os.environ.get("SECRETS_STATUS", "unknown")
     lint_st    = os.environ.get("LINT_STATUS",    "unknown")
 
-    # Parser les rapports
     bandit    = parse_bandit("reports/bandit-results.sarif")
     pip_audit = parse_pip_audit("reports/pip-audit-results.json")
 
-    # Verdict global
     verdict = compute_verdict(sast_st, sca_st, secrets_st, lint_st)
 
-    # Construire le rapport
     report = {
         "metadata": {
             "generated_at": datetime.now(timezone.utc)
@@ -220,11 +215,9 @@ def main():
         "sca":  pip_audit,
     }
 
-    # Sauvegarder JSON
     with open("security-report.json", "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
 
-    # Sauvegarder Markdown
     with open("security-report.md", "w", encoding="utf-8") as f:
         f.write(generate_markdown(report))
 

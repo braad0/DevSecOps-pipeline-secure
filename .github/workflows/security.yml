@@ -12,7 +12,6 @@ permissions:
   actions: read
 
 env:
-  # Adapte selon ta structure de repo
   src_dir: app
   requirements_path: app/requirements.txt
 
