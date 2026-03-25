@@ -286,19 +286,10 @@ Points saillants:
 
 ---
 
-## Roadmap
+## Avertissement légal
 
-* Ajouter un job Pytest dans la CI (matrice Python) pour exécuter les tests
-* Intégrer Semgrep pour des règles personnalisées
-* Ajouter CodeQL pour une couverture SAST plus large
-* Ajouter Trivy pour le scan d’images (si Dockerfile ajouté)
-* Générer un SBOM (CycloneDX) et l’intégrer au rapport
-* Ajouter des badges (CI, licence, Python)
-* Étendre la couverture de tests et ajouter des tests d’intégration
-
----
-
-## Licence
-
-À définir (ex: MIT). Ajouter LICENCE et badge correspondant.
-
+Cet outil est destiné uniquement à des fins éducatives et à des analyses
+sur des systèmes dont vous êtes propriétaire ou pour lesquels vous disposez
+d'une autorisation écrite explicite. Toute utilisation non autorisée est
+illégale. L'auteur décline toute responsabilité en cas d'utilisation
+abusive de cet outil.
