@@ -193,11 +193,12 @@ Vérifie:
 
 ---
 
+
 ## Bonnes pratiques (pistes de remédiation)
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "theme": "default",
   "themeVariables": {
     "background": "#ffffff",
     "primaryTextColor": "#0f172a",
@@ -228,16 +229,10 @@ mindmap
       debug_false
       least_privilege
       secrets_manager
-
-
-classDef center fill:#fde68a,stroke:#92400e,color:#111827,stroke-width:2px;
-classDef grp1 fill:#cffafe,stroke:#0e7490,color:#0f172a,stroke-width:1.5px;
-classDef grp2 fill:#e9d5ff,stroke:#6d28d9,color:#0f172a,stroke-width:1.5px;
-classDef grp3 fill:#dcfce7,stroke:#15803d,color:#0f172a,stroke-width:1.5px;
-classDef grp4 fill:#fee2e2,stroke:#b91c1c,color:#0f172a,stroke-width:1.5px;
-classDef grp5 fill:#e0e7ff,stroke:#3730a3,color:#0f172a,stroke-width:1.5px;
-classDef grp6 fill:#fef3c7,stroke:#a16207,color:#0f172a,stroke-width:1.5px;
 ```
+
+
+
 
 Astuce: Si GitHub a encore du mal à rendre Mermaid, exporte ces diagrammes en SVG/PNG avec mermaid-cli et inclus-les comme images:
 * ![Architecture de l’app](assets/app-arch.svg)
