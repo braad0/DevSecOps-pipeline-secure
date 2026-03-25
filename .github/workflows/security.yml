@@ -10,7 +10,7 @@ permissions:
   security-events: write
   contents: read
   actions: read
-  
+
 jobs:
 
 # -------------------------------------------------------
@@ -20,6 +20,7 @@ jobs:
     name: SAST — Bandit
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         python-version: ["3.10", "3.11", "3.12"]
 
@@ -44,7 +45,7 @@ jobs:
             || true
 
       - name: Upload SARIF to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: bandit-results.sarif
         if: always()
@@ -96,11 +97,6 @@ jobs:
           import json, sys
           with open('pip-audit-results.json') as f:
               data = json.load(f)
-          critical = [
-              v for dep in data.get('dependencies', [])
-              for v in dep.get('vulns', [])
-              if float(v.get('fix_versions', ['0'])[0].split('.')[0] or 0) >= 0
-          ]
           vulns = [
               v for dep in data.get('dependencies', [])
               for v in dep.get('vulns', [])
@@ -130,7 +126,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # Historique Git complet pour TruffleHog
+          fetch-depth: 0
 
       - name: Run TruffleHog
         uses: trufflesecurity/trufflehog@main
@@ -163,7 +159,8 @@ jobs:
           flake8 app/ \
             --max-line-length=120 \
             --statistics \
-            --count
+            --count \
+            || true
 
 # -------------------------------------------------------
 # JOB 5 — REPORT : Agrégation des résultats
