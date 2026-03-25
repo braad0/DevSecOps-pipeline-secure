@@ -1,4 +1,4 @@
-
+```markdown
 # DevSecOps Pipeline Secure
 
 Pipeline CI/CD de sécurité automatisé — SAST, SCA, scan de secrets, lint — avec rapport consolidé à chaque push.
@@ -72,19 +72,17 @@ DevSecOps-pipeline-secure/
 ```mermaid
 graph TB
     subgraph Parallèle
-        B1[SAST<br/>Bandit<br/>SARIF]:::job
-        B2[SCA<br/>pip-audit<br/>JSON]:::job
-        B3[Secrets<br/>TruffleHog]:::job
-        B4[Lint<br/>flake8]:::job
+        B1[SAST<br/>Bandit<br/>SARIF]
+        B2[SCA<br/>pip-audit<br/>JSON]
+        B3[Secrets<br/>TruffleHog]
+        B4[Lint<br/>flake8]
     end
-    B1 --> R[Report<br/>scripts/generate_report.py]:::report
+    B1 --> R[Report<br/>scripts/generate_report.py]
     B2 --> R
     B3 --> R
     B4 --> R
     R --> A1((security-report.json))
     R --> A2((security-report.md))
-    classDef job fill:#0ea5e9,stroke:#0369a1,color:#fff,stroke-width:1px;
-    classDef report fill:#22c55e,stroke:#14532d,color:#fff,stroke-width:1px;
 ```
 
 Artefacts et sorties:
@@ -103,8 +101,8 @@ Captures recommandées:
 ## L’application vulnérable (OWASP Top 10)
 
 ```mermaid
-graph LR
-    U[Client] -->|HTTP| F[Flask app (main.py)]
+flowchart LR
+    U[Client] --> F[Flask app]
     F --> A[auth.py]
     F --> D[database.py]
     F --> FI[files.py]
@@ -112,7 +110,7 @@ graph LR
     P --> P1[pickle_parser.py]
     P --> P2[yaml_parser.py]
     P --> P3[xml_parser.py]
-    D -->|sqlite3| DB[(users.db)]
+    D --> DB[(users.db)]
 ```
 
 | Zone | Fichier | Vulnérabilités (exemples) | OWASP |
@@ -202,39 +200,35 @@ Vérifie:
   "theme": "base",
   "themeVariables": {
     "background": "#ffffff",
-    "primaryColor": "#e3f2fd",
     "primaryTextColor": "#0f172a",
-    "primaryBorderColor": "#1e293b",
-    "lineColor": "#334155",
-    "tertiaryColor": "#f8fafc"
+    "lineColor": "#334155"
   }
 }}%%
 mindmap
-  root(("Remédiations")):::center
+  root((Remédiations)):::center
     Parsers:::grp1
-      yaml.safe_load:::chip
-      defusedxml:::chip
-      éviter pickle:::chip
+      yaml.safe_load
+      defusedxml
+      éviter_pickle
     Web:::grp2
-      échapper/filtrer:::chip
-      pas de render_template_string:::chip
-      subprocess.run(shell=false):::chip
+      échapper_filtrer
+      pas_de_render_template_string
+      subprocess_run_shell_false
     DB:::grp3
-      requêtes paramétrées:::chip
-      validations d'entrée:::chip
+      requêtes_paramétrées
+      validations_dentrée
     Auth:::grp4
-      bcrypt/argon2 + sel:::chip
-      rotation de secrets:::chip
-      JWT avec clés sûres:::chip
+      bcrypt_argon2_sel
+      rotation_secrets
+      JWT_clés_sûres
     Dépendances:::grp5
-      pinning + updates:::chip
-      Dependabot/Renovate:::chip
+      pinning_updates
+      Dependabot_Renovate
     Opérations:::grp6
-      debug=False:::chip
-      least privilege:::chip
-      secrets manager:::chip
+      debug_False
+      least_privilege
+      secrets_manager
 
-%% Styles pour améliorer le contraste
 classDef center fill:#fde68a,stroke:#92400e,color:#111827,stroke-width:2px;
 classDef grp1 fill:#cffafe,stroke:#0e7490,color:#0f172a,stroke-width:1.5px;
 classDef grp2 fill:#e9d5ff,stroke:#6d28d9,color:#0f172a,stroke-width:1.5px;
@@ -242,7 +236,11 @@ classDef grp3 fill:#dcfce7,stroke:#15803d,color:#0f172a,stroke-width:1.5px;
 classDef grp4 fill:#fee2e2,stroke:#b91c1c,color:#0f172a,stroke-width:1.5px;
 classDef grp5 fill:#e0e7ff,stroke:#3730a3,color:#0f172a,stroke-width:1.5px;
 classDef grp6 fill:#fef3c7,stroke:#a16207,color:#0f172a,stroke-width:1.5px;
-classDef chip fill:#ffffff,stroke:#334155,color:#0f172a,stroke-dasharray:2 2,stroke-width:1px;
+```
+
+Astuce: Si GitHub a encore du mal à rendre Mermaid, exporte ces diagrammes en SVG/PNG avec mermaid-cli et inclus-les comme images:
+* ![Architecture de l’app](assets/app-arch.svg)
+* ![Remédiations](assets/remediation.svg)
 
 ---
 
@@ -269,6 +267,18 @@ Fichier: .github/workflows/security.yml
 * Télécharge artefacts
 * Exécute scripts/generate_report.py
 * Publie security-report.json / .md
+
+---
+
+## Roadmap
+
+* Ajouter un job Pytest dans la CI (matrice Python)
+* Semgrep + règles custom
+* CodeQL
+* Trivy (si Dockerfile)
+* SBOM CycloneDX
+* Badges (CI, licence, Python)
+* Plus de captures et de démos d’attaque/mitigation
 
 ---
 
