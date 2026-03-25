@@ -40,7 +40,7 @@ flowchart LR
     G --> H[Artefacts: security-report.json / .md]
 ```
 
-![Status CI](https://img.shields.io/github/actions/workflow/status/<user>/DevSecOps-pipeline-secure/security.yml?branch=main)
+![Status CI](https://img.shields.io/github/actions/workflow/status/braad0/DevSecOps-pipeline-secure/security.yml?branch=main)
 ![Python](https://img.shields.io/badge/python-3.10%20|%203.11%20|%203.12-blue)
 
 ---
@@ -251,6 +251,5 @@ Fichier: .github/workflows/security.yml
 * Publie security-report.json / .md
 
 ---
-
 
 
