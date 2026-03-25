@@ -1,54 +1,51 @@
 # =============================================================
 # FICHIER VOLONTAIREMENT VULNERABLE — A DES FINS EDUCATIVES
+# Point d'entrée Flask avec SSTI
+# OWASP A03 — Injection (SSTI)
 # =============================================================
 
 import os
 import subprocess
-import pickle
-from app.auth import AWS_ACCESS_KEY, DB_PASSWORD
+from flask import Flask, request, render_template_string
+from app.auth import create_jwt, verify_jwt, hash_password_md5
 from app.database import get_user, login
+from app.files import read_file, fetch_url
 
+app = Flask(__name__)
 
-# eval() sur input utilisateur — exécution de code arbitraire
-# Détecté par : Bandit (B307)
-def calculate(expression):
-    return eval(expression)
+# ---- SSTI — Server Side Template Injection ----
+# Détecté par : Bandit (B703, B701)
+# CWE-94 : Improper Control of Generation of Code
+# Payload : name = "{{7*7}}" → affiche 49
+# Payload RCE : name = "{{config.__class__.__init__.__globals__['os'].popen('id').read()}}"
+@app.route("/hello")
+def hello():
+    name = request.args.get("name", "world")
+    template = f"<h1>Hello {name}</h1>"
+    return render_template_string(template)
 
+# ---- Command Injection ----
+# Détecté par : Bandit (B605, B602)
+# CWE-78 : OS Command Injection
+# Payload : filename = "; cat /etc/passwd"
+@app.route("/ping")
+def ping():
+    host = request.args.get("host", "localhost")
+    result = os.popen(f"ping -c 1 {host}").read()
+    return result
 
-# os.system() avec input non sanitisé — command injection
-# Détecté par : Bandit (B605)
-def run_command(user_command):
-    os.system(user_command)
+# ---- Open Redirect ----
+# CWE-601 : URL Redirection to Untrusted Site
+# Payload : url = "https://evil.com"
+@app.route("/redirect")
+def redirect_user():
+    url = request.args.get("url", "/")
+    from flask import redirect
+    return redirect(url)
 
-
-# subprocess avec shell=True — command injection
-# Détecté par : Bandit (B602)
-def run_script(script_name):
-    subprocess.call(f"python {script_name}", shell=True)
-
-
-# pickle.loads() sur données non fiables — désérialisation dangereuse
-# Détecté par : Bandit (B301)
-def load_data(raw_bytes):
-    return pickle.loads(raw_bytes)
-
-
-# Mot de passe hardcodé
-# Détecté par : Bandit (B105)
-def check_admin(password):
-    if password == "admin1234":
-        return True
-    return False
-
-
-# MD5 pour hasher des passwords — algo faible
-# Détecté par : Bandit (B324)
-import hashlib
-def hash_password(password):
-    return hashlib.md5(password.encode()).hexdigest()
-
-
+# ---- Debug mode activé ----
+# Détecté par : Bandit (B201)
+# Ne jamais activer debug=True en production
+# Expose un shell interactif dans le navigateur
 if __name__ == "__main__":
-    print("AWS Key :", AWS_ACCESS_KEY)
-    print("DB Pass :", DB_PASSWORD)
-    print(calculate("1+1"))
+    app.run(debug=True, host="0.0.0.0", port=5000)

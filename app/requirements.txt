@@ -4,3 +4,6 @@ pyyaml==3.13
 jinja2==2.10
 django==2.0.1
 cryptography==2.1.4
+lxml==4.6.2
+paramiko==2.7.1
+Pillow==8.1.0
