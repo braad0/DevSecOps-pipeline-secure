@@ -132,7 +132,7 @@ Avertissement: ce code est intentionnellement vulnérable. Ne pas exposer publiq
 
 ## Installation
 
-* git clone https://github.com/<user>/DevSecOps-pipeline-secure.git
+* git clone https://github.com/braad0/DevSecOps-pipeline-secure.git
 * cd DevSecOps-pipeline-secure
 * python -m venv .venv
 * source .venv/bin/activate    (Windows: .venv\Scripts\Activate.ps1)
