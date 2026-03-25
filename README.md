@@ -269,15 +269,13 @@ Fichier: .github/workflows/security.yml
 
 ---
 
-## Roadmap
+## Avertissement légal
 
-* Ajouter un job Pytest dans la CI (matrice Python)
-* Semgrep + règles custom
-* CodeQL
-* Trivy (si Dockerfile)
-* SBOM CycloneDX
-* Badges (CI, licence, Python)
-* Plus de captures et de démos d’attaque/mitigation
+Cet outil est destiné uniquement à des fins éducatives et à des analyses
+sur des systèmes dont vous êtes propriétaire ou pour lesquels vous disposez
+d'une autorisation écrite explicite. Toute utilisation non autorisée est
+illégale. L'auteur décline toute responsabilité en cas d'utilisation
+abusive de cet outil.
 
 ---
 
