@@ -87,8 +87,7 @@ jobs:
         run: |
           pip-audit \
             -r app/requirements.txt \
-            -f json \
-            -o pip-audit-results.json \
+            -f json > pip-audit-results.json \
             || true
 
       - name: Security Gate — fail on critical CVEs
