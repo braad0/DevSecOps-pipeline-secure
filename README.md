@@ -198,13 +198,29 @@ Vérifie:
 
 ```mermaid
 %%{init: {
-  "theme": "base",
+  "theme": "default",
   "themeVariables": {
     "background": "#ffffff",
-    "primaryTextColor": "#0f172a",
-    "lineColor": "#334155"
+    "primaryTextColor": "#334155",
+    "secondaryTextColor": "#475569",
+    "tertiaryTextColor": "#64748b",
+    "lineColor": "#64748b",
+
+    "primaryColor": "#e2e8f0",
+    "primaryBorderColor": "#94a3b8",
+
+    "noteBkgColor": "#f1f5f9",
+    "noteTextColor": "#334155",
+
+    "clusterBkg": "#f8fafc",
+    "clusterBorder": "#cbd5e1",
+
+    "edgeLabelBackground": "#e5e7eb",
+
+    "fontFamily": "Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif"
   }
 }}%%
+
 mindmap
   root((Remediations))
     Parsers
