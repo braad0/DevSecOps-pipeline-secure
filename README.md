@@ -198,7 +198,7 @@ Vérifie:
 
 ```mermaid
 %%{init: {
-  "theme": "default",
+  "theme": "base",
   "themeVariables": {
     "background": "#ffffff",
     "primaryTextColor": "#0f172a",
