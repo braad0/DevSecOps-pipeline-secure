@@ -1,4 +1,4 @@
-```markdown
+
 # DevSecOps Pipeline Secure
 
 Pipeline CI/CD de sécurité automatisé — SAST, SCA, scan de secrets, lint — avec rapport consolidé à chaque push.
