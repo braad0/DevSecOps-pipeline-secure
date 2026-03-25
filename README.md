@@ -205,29 +205,30 @@ Vérifie:
   }
 }}%%
 mindmap
-  root((Remédiations)):::center
-    Parsers:::grp1
-      yaml.safe_load
+  root((Remediations))
+    Parsers
+      yaml_safe_load
       defusedxml
-      éviter_pickle
-    Web:::grp2
-      échapper_filtrer
-      pas_de_render_template_string
+      avoid_pickle
+    Web
+      escape_filter
+      no_render_template_string
       subprocess_run_shell_false
-    DB:::grp3
-      requêtes_paramétrées
-      validations_dentrée
-    Auth:::grp4
-      bcrypt_argon2_sel
-      rotation_secrets
-      JWT_clés_sûres
-    Dépendances:::grp5
+    DB
+      parameterized_queries
+      input_validation
+    Auth
+      bcrypt_argon2_with_salt
+      secret_rotation
+      jwt_strong_keys
+    Dependencies
       pinning_updates
       Dependabot_Renovate
-    Opérations:::grp6
-      debug_False
+    Operations
+      debug_false
       least_privilege
       secrets_manager
+
 
 classDef center fill:#fde68a,stroke:#92400e,color:#111827,stroke-width:2px;
 classDef grp1 fill:#cffafe,stroke:#0e7490,color:#0f172a,stroke-width:1.5px;
