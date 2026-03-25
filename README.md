@@ -198,31 +198,51 @@ Vérifie:
 ## Bonnes pratiques (pistes de remédiation)
 
 ```mermaid
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryColor": "#e3f2fd",
+    "primaryTextColor": "#0f172a",
+    "primaryBorderColor": "#1e293b",
+    "lineColor": "#334155",
+    "tertiaryColor": "#f8fafc"
+  }
+}}%%
 mindmap
-  root((Remédiations))
-    Parsers
-      yaml.safe_load
-      defusedxml
-      éviter pickle
-    Web
-      échapper/filtrer
-      pas de render_template_string
-      subprocess.run(shell=false)
-    DB
-      requêtes paramétrées
-      validations d'entrée
-    Auth
-      bcrypt/argon2 + sel
-      rotation de secrets
-      JWT avec clés sûres
-    Dépendances
-      pinning + updates
-      Dependabot/Renovate
-    Opérations
-      debug=False
-      least privilege
-      secrets manager
-```
+  root(("Remédiations")):::center
+    Parsers:::grp1
+      yaml.safe_load:::chip
+      defusedxml:::chip
+      éviter pickle:::chip
+    Web:::grp2
+      échapper/filtrer:::chip
+      pas de render_template_string:::chip
+      subprocess.run(shell=false):::chip
+    DB:::grp3
+      requêtes paramétrées:::chip
+      validations d'entrée:::chip
+    Auth:::grp4
+      bcrypt/argon2 + sel:::chip
+      rotation de secrets:::chip
+      JWT avec clés sûres:::chip
+    Dépendances:::grp5
+      pinning + updates:::chip
+      Dependabot/Renovate:::chip
+    Opérations:::grp6
+      debug=False:::chip
+      least privilege:::chip
+      secrets manager:::chip
+
+%% Styles pour améliorer le contraste
+classDef center fill:#fde68a,stroke:#92400e,color:#111827,stroke-width:2px;
+classDef grp1 fill:#cffafe,stroke:#0e7490,color:#0f172a,stroke-width:1.5px;
+classDef grp2 fill:#e9d5ff,stroke:#6d28d9,color:#0f172a,stroke-width:1.5px;
+classDef grp3 fill:#dcfce7,stroke:#15803d,color:#0f172a,stroke-width:1.5px;
+classDef grp4 fill:#fee2e2,stroke:#b91c1c,color:#0f172a,stroke-width:1.5px;
+classDef grp5 fill:#e0e7ff,stroke:#3730a3,color:#0f172a,stroke-width:1.5px;
+classDef grp6 fill:#fef3c7,stroke:#a16207,color:#0f172a,stroke-width:1.5px;
+classDef chip fill:#ffffff,stroke:#334155,color:#0f172a,stroke-dasharray:2 2,stroke-width:1px;
 
 ---
 
